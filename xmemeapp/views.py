@@ -8,17 +8,7 @@ import json
 
 # Create your views here.
 
-BACKEND_URL = 'http://127.0.0.1:7000/memes/'
-
-'''
-memedata = {
-        "name": "suka",
-        "caption": "this is cheeku",
-        "url": "https://netbasequid.com/wp-content/uploads/Brands%E2%80%99-Meme-Marketing-Makes-Sentiment-Analysis-More-Important-Than-Ever.png"
-    }
-'''
-
-
+BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
 
 
 
