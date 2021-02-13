@@ -1,0 +1,87 @@
+{% extends 'xmemeapp/base.html' %}
+
+
+
+{% block title %}
+    <title>XMEME</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container col-lg-5 col-md-6 col-sm-8" >
+
+    <div class="mt-2">
+        <p class="font-weight-bold h1 text-center">XMEME</p>
+    </div>
+    
+    
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>        
+        {% endfor %}
+    {% endif %}
+
+    <form class="mt-2 mb-5 p-1 rounded" method="POST" action="{% url 'home' %}" style="background-color: #eee;">
+        {% csrf_token %} 
+        <div class="form-group my-2">
+          <label for="name">Your Name</label>
+          {{ memeform.name }}
+        </div>
+        <div class="form-group my-2">
+          <label for="caption">Caption</label>
+          {{ memeform.caption }}
+        </div>
+        <div class="form-group my-2">
+          <label for="memeurl">Enter Your Meme Url</label>
+          {{ memeform.url }}
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-sm mt-4">Post Meme</button>
+        </div>
+        
+    </form>
+
+
+    {% if memes %}
+       
+        {% for meme in memes%}
+
+        <div class="row  rounded my-3" style="background-color: #eee ;">
+            <div class="row mx-auto">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                    <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"  class="rounded-circle mw-lg-80 img-fluid" alt="...">
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                    <p class="mt-2 fs-6 font-monoscope"><strong>{{ meme.name }}</strong></p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                    <a href="{% url 'edit' pk=meme.id %}" type="button" class="btn btn-outline-primary btn-sm mt-3"><span><i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i></span>Edit</a>
+                    
+                </div>
+            </div>
+            <div class="row mx-auto">
+                <div class="col py-3">
+                    <p>{{ meme.caption }}</p>
+                </div>
+            </div>
+            <div class="row mx-auto">
+                <div class="col">
+                    <img src="{{ meme.url }}" alt="" class="img-fluid" style="">
+                </div>
+            </div>
+            
+        </div>
+        
+
+        {% endfor %}
+    {% endif %}
+
+    
+
+</div>
+
+{% endblock %}
