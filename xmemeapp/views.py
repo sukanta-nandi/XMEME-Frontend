@@ -10,28 +10,17 @@ import os
 
 # Create your views here.
 
-BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
-#BACKEND_URL = 'http://127.0.0.1:7000/memes/'
+#BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
+BACKEND_URL = 'http://127.0.0.1:7000/memes/'
 
 
-
+#Home view form xmeme to handle 
 class homeView(View):
     """Handles the home view of xmeme"""
 
     form_class = memePostForm
     initial = {'key' : 'value'}
     home_template = 'xmemeapp/home.html'
-
-
-    def is_url_image(self, image_url):
-        image_formats = ("image/png", "image/jpeg", "image/jpg")
-        r = requests.head(image_url)
-   
-        try:
-            if r.headers["content-type"] in image_formats:
-                return True
-        except:
-            return False
 
 
 
@@ -48,16 +37,32 @@ class homeView(View):
 
         return render(request, self.home_template, context)
 
+
+    def is_url_image(self, image_url):
+        image_formats = ("image/png", "image/jpeg", "image/jpg")
+        r = requests.head(image_url)
+
+        try:
+            if r.headers["content-type"] in image_formats:
+                return True
+        except:
+            return False
+
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            
-            response = requests.post(BACKEND_URL, data=request.POST)
-            if response.status_code == 201:
-                messages.success(request, 'Your Meme has been posted successfully!')
+            memeurl = form.cleaned_data.get('url')
 
-            else:
-                messages.error(request, 'Unable to post your meme : '+str(response.status_code))
+            if self.is_url_image(memeurl):
+
+                response = requests.post(BACKEND_URL, data=request.POST)
+                if response.status_code == 201:
+                    messages.success(request, 'Your Meme has been posted successfully!')
+
+                else:
+                    messages.error(request, 'Unable to post your meme : '+str(response.status_code))
+            else :
+                messages.error(request, 'Please enter a valid image url')
         else:
             messages.error(request, 'Please Eneter valid details')
 
