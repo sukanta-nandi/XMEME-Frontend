@@ -3,12 +3,15 @@ from django.http import HttpResponse, JsonResponse
 from .forms import memePostForm, editForm
 from django.views import View
 from django.contrib import messages
+from django.views.generic.edit import DeleteView 
 import requests
 import json
+import os
 
 # Create your views here.
 
-BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
+#BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
+BACKEND_URL = 'http://127.0.0.1:7000/memes/'
 
 
 
@@ -61,6 +64,20 @@ class homeView(View):
         return redirect('home')
         
 
+def deletePost(request, pk):
+
+    try :
+        response = requests.delete(BACKEND_URL+str(pk)+'/')
+        response.raise_for_status()
+        success_msg = 'Successfully deleted your post'
+        messages.success(request, success_msg)
+    except requests.exceptions.HTTPError as e:
+        error_msg = e.response.text
+        messages.error(request, error_msg)
+
+    return redirect('home')    
+
+
 class editView(View):
     """handles editing of a posted meme"""
 
@@ -74,9 +91,12 @@ class editView(View):
     def get(self, request, pk):
         """Fetches the specific meme data to be edited"""
 
+        meme_json = {}
+
         try:
             meme = requests.get(BACKEND_URL+str(pk)+'/', timeout=3)
             meme_data = json.loads(meme.content)
+            meme_json = meme_data
             editedform = self.form_class(meme_data)
             meme.raise_for_status()
         except requests.exceptions.HTTPError as errh:
@@ -95,10 +115,13 @@ class editView(View):
 
         context = {
             'editform' : editedform,
+            'meme' : meme_json
         }
 
         return render(request, self.edit_template, context)
 
+    def deletePost():
+        """"""
 
     def post(self, request, pk):
         """Method for editing updating a meme post"""
@@ -120,3 +143,12 @@ class editView(View):
             messages.error(request, error_msg) 
 
         return redirect('home')
+
+
+def sllAuth(request):
+    module_dir = os.path.dirname(__file__)  
+    file_path = os.path.join(module_dir, '.well-known/pki-validation/D55B041A6A8319F89D4ACC6E48258485.txt') 
+    data_file = open(file_path , 'r')       
+    data = data_file.read()
+ 
+    return HttpResponse(data, content_type='text/json')
