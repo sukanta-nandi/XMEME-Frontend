@@ -147,7 +147,7 @@ class editView(View):
 
 def sllAuth(request):
     module_dir = os.path.dirname(__file__)  
-    file_path = os.path.join(module_dir, '.well-known/pki-validation/D55B041A6A8319F89D4ACC6E48258485.txt') 
+    file_path = os.path.join(module_dir, '.well-known/pki-validation/B49196DA6EF9213ADBB45726509F1A97.txt') 
     data_file = open(file_path , 'r')       
     data = data_file.read()
  
