@@ -10,8 +10,8 @@ import os
 
 # Create your views here.
 
-#BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
-BACKEND_URL = 'http://127.0.0.1:7000/memes/'
+BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
+#BACKEND_URL = 'http://127.0.0.1:7000/memes/'
 
 
 #Home view form xmeme to handle 
@@ -25,6 +25,7 @@ class homeView(View):
 
 
     def get(self, request):
+        """fetches memes from the backend"""
         form = self.form_class(initial=self.initial)
 
         memes = requests.get(BACKEND_URL)
@@ -39,6 +40,8 @@ class homeView(View):
 
 
     def is_url_image(self, image_url):
+        """validates a image url"""
+
         image_formats = ("image/png", "image/jpeg", "image/jpg")
         r = requests.head(image_url)
 
@@ -49,6 +52,7 @@ class homeView(View):
             return False
 
     def post(self, request):
+        """posts a meme and send it to backend"""
         form = self.form_class(request.POST)
         if form.is_valid():
             memeurl = form.cleaned_data.get('url')
@@ -70,6 +74,7 @@ class homeView(View):
         
 
 def deletePost(request, pk):
+    """handles deletion  of a post"""
 
     try :
         response = requests.delete(BACKEND_URL+str(pk)+'/')
@@ -125,8 +130,6 @@ class editView(View):
 
         return render(request, self.edit_template, context)
 
-    def deletePost():
-        """"""
 
     def post(self, request, pk):
         """Method for editing updating a meme post"""
@@ -151,6 +154,7 @@ class editView(View):
 
 
 def sllAuth(request):
+    """for verifying ssl""""
     module_dir = os.path.dirname(__file__)  
     file_path = os.path.join(module_dir, '.well-known/pki-validation/B49196DA6EF9213ADBB45726509F1A97.txt') 
     data_file = open(file_path , 'r')       
