@@ -10,8 +10,8 @@ import os
 
 # Create your views here.
 
-#BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
-BACKEND_URL = 'http://127.0.0.1:7000/memes/'
+BACKEND_URL = 'https://xmemebackendapp.herokuapp.com/memes/'
+#BACKEND_URL = 'http://127.0.0.1:7000/memes/'
 
 
 
