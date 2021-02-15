@@ -78,7 +78,6 @@ def deletePost(request, pk):
 
     try :
         response = requests.delete(BACKEND_URL+str(pk)+'/')
-        response.raise_for_status()
         success_msg = 'Successfully deleted your post'
         messages.success(request, success_msg)
     except requests.exceptions.HTTPError as e:
@@ -154,7 +153,7 @@ class editView(View):
 
 
 def sllAuth(request):
-    """for verifying ssl""""
+    """for verifying ssl"""
     module_dir = os.path.dirname(__file__)  
     file_path = os.path.join(module_dir, '.well-known/pki-validation/B49196DA6EF9213ADBB45726509F1A97.txt') 
     data_file = open(file_path , 'r')       

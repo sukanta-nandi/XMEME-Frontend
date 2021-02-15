@@ -44,7 +44,12 @@
 
 <div class="row justify-content-center">
     <div class="col-4">
+
+      {% if meme.id %}
       <a href='{% url "delete" pk=meme.id  %}' type="button" class="btn btn-danger">Delete Post</a>
+      {% endif %}
+
+      
     </div>
 </div>
 
