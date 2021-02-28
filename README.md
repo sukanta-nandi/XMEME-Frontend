@@ -1,9 +1,9 @@
 # XMeme : A Meme posting Django App
 
 <p float="left">
-  <img src="screenshots/XMEME 28-02-2021 23-31-03.png" width="100" />
-<img src="screenshots/XMEME 28-02-2021 23-31-39.png"  width="100" />
-<img src="screenshots/Edit Meme 28-02-2021 23-32-16.png"  width="100" />
+  <img src="screenshots/XMEME 28-02-2021 23-31-03.png" width="200" />
+<img src="screenshots/XMEME 28-02-2021 23-31-39.png"  width="200" />
+<img src="screenshots/Edit Meme 28-02-2021 23-32-16.png"  width="200" />
 </p>
 
 ---
