@@ -1,8 +1,11 @@
 # XMeme : A Meme posting Django App
 
-<img src="screenshots/XMEME 28-02-2021 23-31-03.png" align="left" width="30%" />
-<img src="screenshots/XMEME 28-02-2021 23-31-39.png" align="center" width="30%" />
-<img src="screenshots/Edit Meme 28-02-2021 23-32-16.png" align="right" width="30%" />
+
+<p float="left">
+  <img src="screenshots/XMEME 28-02-2021 23-31-03.png" width="100" />
+<img src="screenshots/XMEME 28-02-2021 23-31-39.png"  width="100" />
+<img src="screenshots/Edit Meme 28-02-2021 23-32-16.png"  width="100" />
+</p>
 
 ---
 Developed this app as a part of the Crio Externship program. This app allows you to post a meme using a image url
