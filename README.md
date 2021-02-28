@@ -1,8 +1,8 @@
 # XMeme : A Meme posting Django App
 
-<img src="screenshots/XMEME 28-02-2021 23-31-03.png" align="left" width="28%" height=""100px/>
-<img src="screenshots/XMEME 28-02-2021 23-31-39.png" align="center" width="28%" height=""100px/>
-<img src="screenshots/Edit Meme 28-02-2021 23-32-16.png" align="right" width="28%" height=""100px/>
+<img src="screenshots/XMEME 28-02-2021 23-31-03.png" align="left" width="28%" height="100px"/>
+<img src="screenshots/XMEME 28-02-2021 23-31-39.png" align="center" width="28%" height="100px"/>
+<img src="screenshots/Edit Meme 28-02-2021 23-32-16.png" align="right" width="28%" height="100px"/>
 
 
 
